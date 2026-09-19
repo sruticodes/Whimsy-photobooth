@@ -30,7 +30,6 @@
       justify-content: flex-start;
     }
 
-    /* Top Navigation Bar - Centered Grid */
     .header {
       width: 100%;
       height: 60px;
@@ -58,7 +57,6 @@
       justify-self: center;
     }
 
-    /* Screen Views */
     .screen {
       display: none;
       width: 100%;
@@ -96,7 +94,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transform: scaleX(-1); /* Mirror view */
+      transform: scaleX(-1);
     }
 
     .countdown-overlay {
@@ -286,7 +284,6 @@
 </head>
 <body>
 
-  <!-- Top Navigation Header -->
   <header class="header">
     <span class="brand-sub">buildwithsruti</span>
     <span class="brand-title">WHIMSY PHOTOBOOTH</span>
@@ -304,32 +301,27 @@
   <!-- ==================== SCREEN 2: DECORATE ==================== -->
   <section id="screen-2" class="screen">
     <div class="deco-workspace">
-      <!-- Interactive Editor Canvas -->
       <div class="editor-container">
         <canvas id="deco-canvas" width="580" height="380"></canvas>
       </div>
 
-      <!-- Sticker Palette -->
       <div class="sticker-palette">
         <div class="palette-title">PICK YOUR<br/>STICKERS</div>
         <div class="sticker-grid">
-          <div class="sticker-item" data-sticker="purple-gem">
-            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='30,10 70,10 90,35 50,90 10,35' fill='%23d8b4fe' stroke='%23a855f7' stroke-width='4'/><polygon points='30,10 50,35 70,10' fill='%23e9d5ff'/><polygon points='10,35 50,35 30,10' fill='%23c084fc'/><polygon points='70,10 50,35 90,35' fill='%23a855f7'/><polygon points='10,35 50,35 50,90' fill='%239333ea'/><polygon points='90,35 50,35 50,90' fill='%237e22ce'/></svg>" alt="Purple Gem" />
-          </div>
-          <div class="sticker-item" data-sticker="yellow-gem">
-            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='30,10 70,10 90,35 50,90 10,35' fill='%23fef08a' stroke='%23eab308' stroke-width='4'/><polygon points='30,10 50,35 70,10' fill='%23fef9c3'/><polygon points='10,35 50,35 30,10' fill='%23fde047'/><polygon points='70,10 50,35 90,35' fill='%23eab308'/><polygon points='10,35 50,35 50,90' fill='%23ca8a04'/><polygon points='90,35 50,35 50,90' fill='%23a16207'/></svg>" alt="Yellow Gem" />
-          </div>
-          <div class="sticker-item" data-sticker="heart-gem">
-            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M50,88 C50,88 12,60 12,32 C12,16 24,8 36,8 C44,8 48,14 50,18 C52,14 56,8 64,8 C76,8 88,16 88,32 C88,60 50,88 50,88 Z' fill='%23f43f5e' stroke='%23be123c' stroke-width='4'/><path d='M50,18 C44,8 36,8 24,12 C16,20 16,32 30,50 L50,88 Z' fill='%23fb7185'/><circle cx='32' cy='22' r='6' fill='%23ffffff' opacity='0.7'/></svg>" alt="Heart Gem" />
+          <div class="sticker-item" data-sticker="blue-gem">
+            <img src="images/images/path-to-your-blue-gem.png" alt="Blue Gem" />
           </div>
           <div class="sticker-item" data-sticker="green-gem">
-            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='30,10 70,10 90,35 50,90 10,35' fill='%2386efac' stroke='%2322c55e' stroke-width='4'/><polygon points='30,10 50,35 70,10' fill='%23bbf7d0'/><polygon points='10,35 50,35 30,10' fill='%234ade80'/><polygon points='70,10 50,35 90,35' fill='%2322c55e'/><polygon points='10,35 50,35 50,90' fill='%2316a34a'/><polygon points='90,35 50,35 50,90' fill='%2315803d'/></svg>" alt="Green Gem" />
+            <img src="images/images/path-to-your-green-gem.png" alt="Green Gem" />
           </div>
-          <div class="sticker-item" data-sticker="blue-gem">
-            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='30,10 70,10 90,35 50,90 10,35' fill='%237dd3fc' stroke='%230284c7' stroke-width='4'/><polygon points='30,10 50,35 70,10' fill='%23bae6fd'/><polygon points='10,35 50,35 30,10' fill='%2338bdf8'/><polygon points='70,10 50,35 90,35' fill='%230284c7'/><polygon points='10,35 50,35 50,90' fill='%230369a1'/><polygon points='90,35 50,35 50,90' fill='%23075985'/></svg>" alt="Blue Gem" />
+          <div class="sticker-item" data-sticker="heart-gem">
+            <img src="images/images/path-to-your-heart-gem.png" alt="Heart Gem" />
           </div>
-          <div class="sticker-item" data-sticker="pink-gem">
-            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='30,10 70,10 90,35 50,90 10,35' fill='%23f472b6' stroke='%23db2777' stroke-width='4'/><polygon points='30,10 50,35 70,10' fill='%23fbcfe8'/><polygon points='10,35 50,35 30,10' fill='%23f472b6'/><polygon points='70,10 50,35 90,35' fill='%23db2777'/><polygon points='10,35 50,35 50,90' fill='%23be185d'/><polygon points='90,35 50,35 50,90' fill='%239d174d'/></svg>" alt="Pink Gem" />
+          <div class="sticker-item" data-sticker="purple-gem">
+            <img src="images/images/path-to-your-purple-gem.png" alt="Purple Gem" />
+          </div>
+          <div class="sticker-item" data-sticker="yellow-gem">
+            <img src="images/images/path-to-your-yellow-gem.png" alt="Yellow Gem" />
           </div>
         </div>
       </div>
@@ -361,20 +353,19 @@
   <canvas id="export-canvas"></canvas>
 
   <script>
-    // --- Embedded Vector Assets for Canvas ---
-    const stickerDataURIs = {
-      'purple-gem': "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='30,10 70,10 90,35 50,90 10,35' fill='%23d8b4fe' stroke='%23a855f7' stroke-width='4'/><polygon points='30,10 50,35 70,10' fill='%23e9d5ff'/><polygon points='10,35 50,35 30,10' fill='%23c084fc'/><polygon points='70,10 50,35 90,35' fill='%23a855f7'/><polygon points='10,35 50,35 50,90' fill='%239333ea'/><polygon points='90,35 50,35 50,90' fill='%237e22ce'/></svg>",
-      'yellow-gem': "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='30,10 70,10 90,35 50,90 10,35' fill='%23fef08a' stroke='%23eab308' stroke-width='4'/><polygon points='30,10 50,35 70,10' fill='%23fef9c3'/><polygon points='10,35 50,35 30,10' fill='%23fde047'/><polygon points='70,10 50,35 90,35' fill='%23eab308'/><polygon points='10,35 50,35 50,90' fill='%23ca8a04'/><polygon points='90,35 50,35 50,90' fill='%23a16207'/></svg>",
-      'heart-gem': "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M50,88 C50,88 12,60 12,32 C12,16 24,8 36,8 C44,8 48,14 50,18 C52,14 56,8 64,8 C76,8 88,16 88,32 C88,60 50,88 50,88 Z' fill='%23f43f5e' stroke='%23be123c' stroke-width='4'/><path d='M50,18 C44,8 36,8 24,12 C16,20 16,32 30,50 L50,88 Z' fill='%23fb7185'/><circle cx='32' cy='22' r='6' fill='%23ffffff' opacity='0.7'/></svg>",
-      'green-gem': "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='30,10 70,10 90,35 50,90 10,35' fill='%2386efac' stroke='%2322c55e' stroke-width='4'/><polygon points='30,10 50,35 70,10' fill='%23bbf7d0'/><polygon points='10,35 50,35 30,10' fill='%234ade80'/><polygon points='70,10 50,35 90,35' fill='%2322c55e'/><polygon points='10,35 50,35 50,90' fill='%2316a34a'/><polygon points='90,35 50,35 50,90' fill='%2315803d'/></svg>",
-      'blue-gem': "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='30,10 70,10 90,35 50,90 10,35' fill='%237dd3fc' stroke='%230284c7' stroke-width='4'/><polygon points='30,10 50,35 70,10' fill='%23bae6fd'/><polygon points='10,35 50,35 30,10' fill='%2338bdf8'/><polygon points='70,10 50,35 90,35' fill='%230284c7'/><polygon points='10,35 50,35 50,90' fill='%230369a1'/><polygon points='90,35 50,35 50,90' fill='%23075985'/></svg>",
-      'pink-gem': "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='30,10 70,10 90,35 50,90 10,35' fill='%23f472b6' stroke='%23db2777' stroke-width='4'/><polygon points='30,10 50,35 70,10' fill='%23fbcfe8'/><polygon points='10,35 50,35 30,10' fill='%23f472b6'/><polygon points='70,10 50,35 90,35' fill='%23db2777'/><polygon points='10,35 50,35 50,90' fill='%23be185d'/><polygon points='90,35 50,35 50,90' fill='%239d174d'/></svg>"
+    // --- Preload Local PNG Assets Matching images/images Paths ---
+    const stickerPaths = {
+      'blue-gem': 'images/images/path-to-your-blue-gem.png',
+      'green-gem': 'images/images/path-to-your-green-gem.png',
+      'heart-gem': 'images/images/path-to-your-heart-gem.png',
+      'purple-gem': 'images/images/path-to-your-purple-gem.png',
+      'yellow-gem': 'images/images/path-to-your-yellow-gem.png'
     };
 
     const preloadedImages = {};
-    Object.keys(stickerDataURIs).forEach(key => {
+    Object.keys(stickerPaths).forEach(key => {
       const img = new Image();
-      img.src = stickerDataURIs[key];
+      img.src = stickerPaths[key];
       preloadedImages[key] = img;
     });
 
@@ -461,7 +452,7 @@
       showScreen(2);
     }
 
-    // --- 2. Interactive Canvas Editor with Scaling & Controls ---
+    // --- 2. Canvas Editor & PNG Rendering ---
     function renderDecoCanvas() {
       if (!currentPhotoData) return;
 
@@ -475,28 +466,26 @@
           decoCtx.translate(sticker.x, sticker.y);
           decoCtx.rotate((sticker.rotation || 0) * Math.PI / 180);
 
-          // Draw Image Asset
+          // Draw Local PNG Image
           const imgAsset = preloadedImages[sticker.id];
-          if (imgAsset) {
+          if (imgAsset && imgAsset.complete) {
             decoCtx.drawImage(imgAsset, -sticker.size / 2, -sticker.size / 2, sticker.size, sticker.size);
           }
 
-          // Draw Selection & Interactive Controls
+          // Interactive Control Handles
           if (index === selectedStickerIndex) {
             const boxSize = sticker.size + 12;
             
-            // Dashed Selection Box
             decoCtx.strokeStyle = '#ff60a8';
             decoCtx.lineWidth = 2;
             decoCtx.setLineDash([4, 4]);
             decoCtx.strokeRect(-boxSize / 2, -boxSize / 2, boxSize, boxSize);
             decoCtx.setLineDash([]);
 
-            // Corner Controls (+ / - / ↻ / ✕)
-            drawControlButton(boxSize / 2, -boxSize / 2, '✕', '#ff4d4d'); // Top-Right: Delete
-            drawControlButton(boxSize / 2, boxSize / 2, '+', '#4caf50');  // Bottom-Right: Grow
-            drawControlButton(-boxSize / 2, boxSize / 2, '−', '#2196f3'); // Bottom-Left: Shrink
-            drawControlButton(-boxSize / 2, -boxSize / 2, '↻', '#ff9800'); // Top-Left: Rotate
+            drawControlButton(boxSize / 2, -boxSize / 2, '✕', '#ff4d4d'); // Delete
+            drawControlButton(boxSize / 2, boxSize / 2, '+', '#4caf50');  // Grow
+            drawControlButton(-boxSize / 2, boxSize / 2, '−', '#2196f3'); // Shrink
+            drawControlButton(-boxSize / 2, -boxSize / 2, '↻', '#ff9800'); // Rotate
           }
 
           decoCtx.restore();
@@ -551,7 +540,7 @@
     function onPointerDown(e) {
       const { x, y } = getCanvasCoordinates(e);
 
-      // Check Controls on Selected Sticker
+      // Control Buttons Hit Test
       if (selectedStickerIndex !== null) {
         const s = activeStickers[selectedStickerIndex];
         const boxSize = s.size + 12;
@@ -589,7 +578,7 @@
         }
       }
 
-      // Check Click/Drag Hit
+      // Drag Hit Test
       let hitFound = false;
       for (let i = activeStickers.length - 1; i >= 0; i--) {
         const s = activeStickers[i];
