@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Whimsy Photobooth</title>
+  
+  <!-- Pixel & Handwritten Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Reenie+Beanie&family=VT323&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Press Start 2P', monospace;
+      background-color: #fce4ec;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    /* Top Navigation Bar */
+    .header {
+      width: 100%;
+      height: 60px;
+      background: #f7f5f7;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      border-bottom: 2px solid #e0e0e0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+      z-index: 10;
+    }
+
+    .brand-sub {
+      font-family: 'Reenie Beanie', cursive;
+      font-size: 28px;
+      color: #333;
+      letter-spacing: 1px;
+    }
+
+    .brand-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 22px;
+      color: #ff60a8;
+      text-shadow: 2px 2px 0px #ffe1ee;
+      letter-spacing: -1px;
+    }
+
+    /* Screen Views */
+    .screen {
+      display: none;
+      width: 100%;
+      height: calc(100vh - 60px);
+      position: relative;
+    }
+
+    .screen.active {
+      display: flex;
+    }
+
+    /* ---------------- SCREEN 1: TAKE PHOTO ---------------- */
+    #screen-1 {
+      background-color: #f7b2d1;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .camera-frame {
+      width: 640px;
+      height: 420px;
+      background-color: #faebeb;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #webcam-feed {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scaleX(-1); /* Mirror view */
+    }
+
+    .countdown-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.35);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 96px;
+      color: #fff;
+      text-shadow: 4px 4px 0 #ff60a8;
+      z-index: 5;
+    }
+
+    .pixel-btn {
+      background: #fce4ec;
+      border: 3px solid #000;
+      padding: 14px 28px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 13px;
+      color: #000;
+      cursor: pointer;
+      box-shadow: 4px 4px 0px #000;
+      transition: all 0.1s ease;
+      text-transform: uppercase;
+    }
+
+    .pixel-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px #000;
+      background: #ffffff;
+    }
+
+    .pixel-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px #000;
+    }
+
+    /* ---------------- SCREEN 2: WHIMSYMAXX DECORATION ---------------- */
+    #screen-2 {
+      background-color: #f7b2d1;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 30px;
+    }
+
+    .deco-workspace {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .editor-container {
+      width: 580px;
+      height: 380px;
+      background-color: #faebeb;
+      position: relative;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    #deco-canvas {
+      width: 100%;
+      height: 100%;
+      cursor: crosshair;
+    }
+
+    .sticker-palette {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .palette-title {
+      font-size: 14px;
+      color: #333;
+      letter-spacing: 0.5px;
+    }
+
+    .sticker-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .sticker-item {
+      width: 52px;
+      height: 52px;
+      background: rgba(255, 255, 255, 0.6);
+      border: 2px solid transparent;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 28px;
+    }
+
+    .sticker-item:hover {
+      transform: scale(1.15) rotate(5deg);
+      background: #ffffff;
+      border-color: #ff60a8;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .deco-controls {
+      margin-top: 24px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .whimsy-caption {
+      margin-top: 28px;
+      font-family: 'Reenie Beanie', cursive;
+      font-size: 42px;
+      color: #1a1a1a;
+      letter-spacing: 1px;
+    }
+
+    /* ---------------- SCREEN 3: PHOTO STRIP RESULT ---------------- */
+    #screen-3 {
+      background-color: #fdf8c5;
+      align-items: center;
+      justify-content: center;
+      gap: 60px;
+    }
+
+    .strip-container {
+      width: 220px;
+      background: #e3f6ed;
+      padding: 16px 16px 20px 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      border-radius: 4px;
+    }
+
+    .strip-slot {
+      width: 100%;
+      height: 125px;
+      background-color: #d1d1d1;
+      border-radius: 2px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .strip-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .strip-footer {
+      font-family: 'Reenie Beanie', cursive;
+      font-size: 32px;
+      color: #222;
+      margin-top: 4px;
+    }
+
+    .action-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Hidden Canvas for High-Res Photostrip Rendering */
+    #export-canvas {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="header">
+    <span class="brand-sub">buildwithsruti</span>
+    <span class="brand-title">WHIMSY PHOTOBOOTH</span>
+  </header>
+
+  <!-- ==================== SCREEN 1: TAKE PHOTO ==================== -->
+  <section id="screen-1" class="screen active">
+    <div class="camera-frame">
+      <video id="webcam-feed" autoplay playsinline muted></video>
+      <div id="countdown" class="countdown-overlay">3</div>
+    </div>
+    <button class="pixel-btn" id="btn-take-photo">TAKE A PHOTO</button>
+  </section>
+
+  <!-- ==================== SCREEN 2: DECORATE ==================== -->
+  <section id="screen-2" class="screen">
+    <div class="deco-workspace">
+      <!-- Interactive Editor Canvas -->
+      <div class="editor-container">
+        <canvas id="deco-canvas" width="580" height="380"></canvas>
+      </div>
+
+      <!-- Sticker Palette -->
+      <div class="sticker-palette">
+        <div class="palette-title">PICK YOUR<br/>STICKERS</div>
+        <div class="sticker-grid">
+          <div class="sticker-item" data-sticker="💎">💎</div>
+          <div class="sticker-item" data-sticker="⭐">⭐</div>
+          <div class="sticker-item" data-sticker="💜">💜</div>
+          <div class="sticker-item" data-sticker="🩵">🩵</div>
+          <div class="sticker-item" data-sticker="💖">💖</div>
+          <div class="sticker-item" data-sticker="✨">✨</div>
+          <div class="sticker-item" data-sticker="🎀">🎀</div>
+          <div class="sticker-item" data-sticker="🌸">🌸</div>
+          <div class="sticker-item" data-sticker="👑">👑</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="deco-controls">
+      <button class="pixel-btn" id="btn-add-to-strip">ADD TO STRIP</button>
+      <button class="pixel-btn" id="btn-clear-canvas">CLEAR</button>
+    </div>
+
+    <p class="whimsy-caption">Drag stickers on to your face and whimsymaxx</p>
+  </section>
+
+  <!-- ==================== SCREEN 3: DOWNLOAD ==================== -->
+  <section id="screen-3" class="screen">
+    <!-- Visual Photo Strip Preview -->
+    <div class="strip-container" id="strip-preview">
+      <div class="strip-slot" id="slot-0"></div>
+      <div class="strip-slot" id="slot-1"></div>
+      <div class="strip-slot" id="slot-2"></div>
+      <div class="strip-footer">WHIMSY</div>
+    </div>
+
+    <!-- Actions Panel -->
+    <div class="action-panel">
+      <button class="pixel-btn" id="btn-download-strip">DOWNLOAD STRIP</button>
+      <button class="pixel-btn" id="btn-take-another">TAKE ANOTHER</button>
+    </div>
+  </section>
+
+  <!-- Hidden canvas for high-quality export -->
+  <canvas id="export-canvas"></canvas>
+
+  <script>
+    // --- Application State ---
+    const capturedPhotos = []; // Stores up to 3 final image data URLs
+    let currentPhotoData = null; // Holds the current snapshot being decorated
+    let activeStickers = []; // Holds placed sticker objects { symbol, x, y, size }
+    let draggedStickerIndex = null;
+    let dragOffsetX = 0;
+    let dragOffsetY = 0;
+
+    // --- DOM Elements ---
+    const screens = {
+      1: document.getElementById('screen-1'),
+      2: document.getElementById('screen-2'),
+      3: document.getElementById('screen-3')
+    };
+
+    const webcamFeed = document.getElementById('webcam-feed');
+    const countdownEl = document.getElementById('countdown');
+    const btnTakePhoto = document.getElementById('btn-take-photo');
+
+    const decoCanvas = document.getElementById('deco-canvas');
+    const decoCtx = decoCanvas.getContext('2d');
+    const btnAddToStrip = document.getElementById('btn-add-to-strip');
+    const btnClearCanvas = document.getElementById('btn-clear-canvas');
+
+    const btnDownloadStrip = document.getElementById('btn-download-strip');
+    const btnTakeAnother = document.getElementById('btn-take-another');
+
+    // Switch active screen view
+    function showScreen(screenNum) {
+      Object.values(screens).forEach(s => s.classList.remove('active'));
+      screens[screenNum].classList.add('active');
+    }
+
+    // --- 1. Webcam Setup ---
+    async function initCamera() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { width: 1280, height: 720, facingMode: 'user' },
+          audio: false
+        });
+        webcamFeed.srcObject = stream;
+      } catch (err) {
+        alert('Camera access is required for Whimsy Photobooth.');
+        console.error('Camera initialization error:', err);
+      }
+    }
+
+    // Countdown & Capture Snapshot
+    btnTakePhoto.addEventListener('click', () => {
+      let count = 3;
+      countdownEl.textContent = count;
+      countdownEl.style.display = 'flex';
+      btnTakePhoto.disabled = true;
+
+      const timer = setInterval(() => {
+        count--;
+        if (count > 0) {
+          countdownEl.textContent = count;
+        } else {
+          clearInterval(timer);
+          countdownEl.style.display = 'none';
+          btnTakePhoto.disabled = false;
+          captureSnapshot();
+        }
+      }, 800);
+    });
+
+    function captureSnapshot() {
+      const tempCanvas = document.createElement('canvas');
+      tempCanvas.width = 580;
+      tempCanvas.height = 380;
+      const ctx = tempCanvas.getContext('2d');
+
+      // Draw mirrored camera frame
+      ctx.translate(580, 0);
+      ctx.scale(-1, 1);
+      ctx.drawImage(webcamFeed, 0, 0, 580, 380);
+
+      currentPhotoData = tempCanvas.toDataURL('image/png');
+      activeStickers = []; // Reset stickers for new photo
+      renderDecoCanvas();
+      showScreen(2);
+    }
+
+    // --- 2. Interactive Canvas Editor ---
+    function renderDecoCanvas() {
+      if (!currentPhotoData) return;
+
+      const img = new Image();
+      img.onload = () => {
+        decoCtx.clearRect(0, 0, decoCanvas.width, decoCanvas.height);
+        decoCtx.drawImage(img, 0, 0, decoCanvas.width, decoCanvas.height);
+
+        // Draw active stickers
+        activeStickers.forEach(sticker => {
+          decoCtx.font = `${sticker.size}px sans-serif`;
+          decoCtx.textAlign = 'center';
+          decoCtx.textBaseline = 'middle';
+          decoCtx.fillText(sticker.symbol, sticker.x, sticker.y);
+        });
+      };
+      img.src = currentPhotoData;
+    }
+
+    // Add Sticker from Palette
+    document.querySelectorAll('.sticker-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const symbol = item.getAttribute('data-sticker');
+        // Spawn near center with slight random offset
+        activeStickers.push({
+          symbol: symbol,
+          x: 290 + (Math.random() * 40 - 20),
+          y: 190 + (Math.random() * 40 - 20),
+          size: 48
+        });
+        renderDecoCanvas();
+      });
+    });
+
+    // Canvas Mouse / Touch Dragging
+    function getCanvasCoordinates(e) {
+      const rect = decoCanvas.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      return {
+        x: clientX - rect.left,
+        y: clientY - rect.top
+      };
+    }
+
+    function onPointerDown(e) {
+      const { x, y } = getCanvasCoordinates(e);
+
+      // Check hits in reverse order (top stickers first)
+      for (let i = activeStickers.length - 1; i >= 0; i--) {
+        const s = activeStickers[i];
+        const dist = Math.hypot(s.x - x, s.y - y);
+        if (dist < s.size / 1.5) {
+          draggedStickerIndex = i;
+          dragOffsetX = x - s.x;
+          dragOffsetY = y - s.y;
+          return;
+        }
+      }
+    }
+
+    function onPointerMove(e) {
+      if (draggedStickerIndex === null) return;
+      const { x, y } = getCanvasCoordinates(e);
+      activeStickers[draggedStickerIndex].x = x - dragOffsetX;
+      activeStickers[draggedStickerIndex].y = y - dragOffsetY;
+      renderDecoCanvas();
+    }
+
+    function onPointerUp() {
+      draggedStickerIndex = null;
+    }
+
+    decoCanvas.addEventListener('mousedown', onPointerDown);
+    decoCanvas.addEventListener('mousemove', onPointerMove);
+    window.addEventListener('mouseup', onPointerUp);
+
+    decoCanvas.addEventListener('touchstart', onPointerDown);
+    decoCanvas.addEventListener('touchmove', onPointerMove);
+    window.addEventListener('touchend', onPointerUp);
+
+    // Clear Canvas Stickers
+    btnClearCanvas.addEventListener('click', () => {
+      activeStickers = [];
+      renderDecoCanvas();
+    });
+
+    // Save Photo & Move to Next Step
+    btnAddToStrip.addEventListener('click', () => {
+      // Export current decorated canvas
+      const decoratedImageData = decoCanvas.toDataURL('image/png');
+      capturedPhotos.push(decoratedImageData);
+
+      // Update Strip Preview Slot
+      const currentSlotIndex = capturedPhotos.length - 1;
+      const slotEl = document.getElementById(`slot-${currentSlotIndex}`);
+      slotEl.innerHTML = `<img src="${decoratedImageData}" alt="Strip Photo ${currentSlotIndex + 1}" />`;
+
+      if (capturedPhotos.length < 3) {
+        showScreen(1); // Take next photo
+      } else {
+        showScreen(3); // Photostrip full, show final result screen
+      }
+    });
+
+    // --- 3. Photostrip Generation & Download ---
+    btnDownloadStrip.addEventListener('click', () => {
+      const exportCanvas = document.getElementById('export-canvas');
+      const ctx = exportCanvas.getContext('2d');
+
+      // High-resolution canvas dimensions
+      const stripWidth = 440;
+      const stripHeight = 860;
+      exportCanvas.width = stripWidth;
+      exportCanvas.height = stripHeight;
+
+      // Background (#e3f6ed)
+      ctx.fillStyle = '#e3f6ed';
+      ctx.fillRect(0, 0, stripWidth, stripHeight);
+
+      // Render 3 photos
+      const padding = 32;
+      const photoWidth = stripWidth - (padding * 2);
+      const photoHeight = 220;
+      let loadedImages = 0;
+
+      capturedPhotos.forEach((dataUrl, index) => {
+        const img = new Image();
+        img.onload = () => {
+          const posY = padding + index * (photoHeight + 16);
+          ctx.drawImage(img, padding, posY, photoWidth, photoHeight);
+          loadedImages++;
+
+          if (loadedImages === capturedPhotos.length) {
+            // Draw Handwritten Footer "WHIMSY"
+            ctx.fillStyle = '#222222';
+            ctx.font = '64px "Reenie Beanie", cursive';
+            ctx.textAlign = 'center';
+            ctx.fillText('WHIMSY', stripWidth / 2, stripHeight - 40);
+
+            // Trigger Download
+            const link = document.createElement('a');
+            link.download = 'whimsy-photostrip.png';
+            link.href = exportCanvas.toDataURL('image/png');
+            link.click();
+          }
+        };
+        img.src = dataUrl;
+      });
+    });
+
+    // Reset Flow
+    btnTakeAnother.addEventListener('click', () => {
+      capturedPhotos.length = 0;
+      for (let i = 0; i < 3; i++) {
+        document.getElementById(`slot-${i}`).innerHTML = '';
+      }
+      showScreen(1);
+    });
+
+    // Initialize Camera on page load
+    window.addEventListener('DOMContentLoaded', initCamera);
+  </script>
+</body>
+</html>
