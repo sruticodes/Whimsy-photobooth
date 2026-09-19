@@ -30,32 +30,33 @@
       justify-content: flex-start;
     }
 
+    /* Top Navigation Bar - Centered Grid */
     .header {
-  width: 100%;
-  height: 60px;
-  background: #f7f5f7;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr; /* 3-column grid keeps title perfectly centered */
-  align-items: center;
-  padding: 0 24px;
-  border-bottom: 2px solid #e0e0e0;
-  z-index: 10;
-}
+      width: 100%;
+      height: 60px;
+      background: #f7f5f7;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 0 24px;
+      border-bottom: 2px solid #e0e0e0;
+      z-index: 10;
+    }
 
-.brand-sub {
-  font-family: 'Reenie Beanie', cursive;
-  font-size: 28px;
-  color: #333;
-  justify-self: start;
-}
+    .brand-sub {
+      font-family: 'Reenie Beanie', cursive;
+      font-size: 28px;
+      color: #333;
+      justify-self: start;
+    }
 
-.brand-title {
-  font-family: 'Press Start 2P', monospace;
-  font-size: 20px;
-  color: #ff60a8;
-  text-shadow: 2px 2px 0px #ffe1ee;
-  justify-self: center;
-}
+    .brand-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 20px;
+      color: #ff60a8;
+      text-shadow: 2px 2px 0px #ffe1ee;
+      justify-self: center;
+    }
 
     /* Screen Views */
     .screen {
@@ -177,6 +178,7 @@
       font-size: 14px;
       color: #333;
       letter-spacing: 0.5px;
+      text-align: center;
     }
 
     .sticker-grid {
@@ -188,7 +190,7 @@
     .sticker-item {
       width: 52px;
       height: 52px;
-      background: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.7);
       border: 2px solid transparent;
       border-radius: 50%;
       display: flex;
@@ -196,7 +198,14 @@
       justify-content: center;
       cursor: pointer;
       transition: all 0.2s ease;
-      font-size: 28px;
+      padding: 6px;
+    }
+
+    .sticker-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      pointer-events: none;
     }
 
     .sticker-item:hover {
@@ -270,7 +279,6 @@
       gap: 20px;
     }
 
-    /* Hidden Canvas for High-Res Photostrip Rendering */
     #export-canvas {
       display: none;
     }
@@ -305,13 +313,25 @@
       <div class="sticker-palette">
         <div class="palette-title">PICK YOUR<br/>STICKERS</div>
         <div class="sticker-grid">
-  <!-- Replace emoji characters with image URLs or local PNG paths -->
-  <img class="sticker-item" src="path-to-your-purple-gem.png" data-sticker="purple-gem" />
-  <img class="sticker-item" src="path-to-your-yellow-gem.png" data-sticker="yellow-gem" />
-  <img class="sticker-item" src="path-to-your-heart-gem.png" data-sticker="heart-gem" />
-  <img class="sticker-item" src="path-to-your-green-gem.png" data-sticker="green-gem" />
-  <img class="sticker-item" src="path-to-your-blue-gem.png" data-sticker="blue-gem" />
-</div>
+          <div class="sticker-item" data-sticker="purple-gem">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='30,10 70,10 90,35 50,90 10,35' fill='%23d8b4fe' stroke='%23a855f7' stroke-width='4'/><polygon points='30,10 50,35 70,10' fill='%23e9d5ff'/><polygon points='10,35 50,35 30,10' fill='%23c084fc'/><polygon points='70,10 50,35 90,35' fill='%23a855f7'/><polygon points='10,35 50,35 50,90' fill='%239333ea'/><polygon points='90,35 50,35 50,90' fill='%237e22ce'/></svg>" alt="Purple Gem" />
+          </div>
+          <div class="sticker-item" data-sticker="yellow-gem">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='30,10 70,10 90,35 50,90 10,35' fill='%23fef08a' stroke='%23eab308' stroke-width='4'/><polygon points='30,10 50,35 70,10' fill='%23fef9c3'/><polygon points='10,35 50,35 30,10' fill='%23fde047'/><polygon points='70,10 50,35 90,35' fill='%23eab308'/><polygon points='10,35 50,35 50,90' fill='%23ca8a04'/><polygon points='90,35 50,35 50,90' fill='%23a16207'/></svg>" alt="Yellow Gem" />
+          </div>
+          <div class="sticker-item" data-sticker="heart-gem">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M50,88 C50,88 12,60 12,32 C12,16 24,8 36,8 C44,8 48,14 50,18 C52,14 56,8 64,8 C76,8 88,16 88,32 C88,60 50,88 50,88 Z' fill='%23f43f5e' stroke='%23be123c' stroke-width='4'/><path d='M50,18 C44,8 36,8 24,12 C16,20 16,32 30,50 L50,88 Z' fill='%23fb7185'/><circle cx='32' cy='22' r='6' fill='%23ffffff' opacity='0.7'/></svg>" alt="Heart Gem" />
+          </div>
+          <div class="sticker-item" data-sticker="green-gem">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='30,10 70,10 90,35 50,90 10,35' fill='%2386efac' stroke='%2322c55e' stroke-width='4'/><polygon points='30,10 50,35 70,10' fill='%23bbf7d0'/><polygon points='10,35 50,35 30,10' fill='%234ade80'/><polygon points='70,10 50,35 90,35' fill='%2322c55e'/><polygon points='10,35 50,35 50,90' fill='%2316a34a'/><polygon points='90,35 50,35 50,90' fill='%2315803d'/></svg>" alt="Green Gem" />
+          </div>
+          <div class="sticker-item" data-sticker="blue-gem">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='30,10 70,10 90,35 50,90 10,35' fill='%237dd3fc' stroke='%230284c7' stroke-width='4'/><polygon points='30,10 50,35 70,10' fill='%23bae6fd'/><polygon points='10,35 50,35 30,10' fill='%2338bdf8'/><polygon points='70,10 50,35 90,35' fill='%230284c7'/><polygon points='10,35 50,35 50,90' fill='%230369a1'/><polygon points='90,35 50,35 50,90' fill='%23075985'/></svg>" alt="Blue Gem" />
+          </div>
+          <div class="sticker-item" data-sticker="pink-gem">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='30,10 70,10 90,35 50,90 10,35' fill='%23f472b6' stroke='%23db2777' stroke-width='4'/><polygon points='30,10 50,35 70,10' fill='%23fbcfe8'/><polygon points='10,35 50,35 30,10' fill='%23f472b6'/><polygon points='70,10 50,35 90,35' fill='%23db2777'/><polygon points='10,35 50,35 50,90' fill='%23be185d'/><polygon points='90,35 50,35 50,90' fill='%239d174d'/></svg>" alt="Pink Gem" />
+          </div>
+        </div>
       </div>
     </div>
 
@@ -325,7 +345,6 @@
 
   <!-- ==================== SCREEN 3: DOWNLOAD ==================== -->
   <section id="screen-3" class="screen">
-    <!-- Visual Photo Strip Preview -->
     <div class="strip-container" id="strip-preview">
       <div class="strip-slot" id="slot-0"></div>
       <div class="strip-slot" id="slot-1"></div>
@@ -333,357 +352,360 @@
       <div class="strip-footer">WHIMSY</div>
     </div>
 
-    <!-- Actions Panel -->
     <div class="action-panel">
       <button class="pixel-btn" id="btn-download-strip">DOWNLOAD STRIP</button>
       <button class="pixel-btn" id="btn-take-another">TAKE ANOTHER</button>
     </div>
   </section>
 
-  <!-- Hidden canvas for high-quality export -->
   <canvas id="export-canvas"></canvas>
 
-  <script>// --- Application State ---
-const capturedPhotos = [];
-let currentPhotoData = null;
-let activeStickers = []; // Objects: { symbol, x, y, size, rotation }
-let selectedStickerIndex = null;
-let draggedStickerIndex = null;
-let dragOffsetX = 0;
-let dragOffsetY = 0;
-
-// --- DOM Elements ---
-const screens = {
-  1: document.getElementById('screen-1'),
-  2: document.getElementById('screen-2'),
-  3: document.getElementById('screen-3')
-};
-
-const webcamFeed = document.getElementById('webcam-feed');
-const countdownEl = document.getElementById('countdown');
-const btnTakePhoto = document.getElementById('btn-take-photo');
-
-const decoCanvas = document.getElementById('deco-canvas');
-const decoCtx = decoCanvas.getContext('2d');
-const btnAddToStrip = document.getElementById('btn-add-to-strip');
-const btnClearCanvas = document.getElementById('btn-clear-canvas');
-
-const btnDownloadStrip = document.getElementById('btn-download-strip');
-const btnTakeAnother = document.getElementById('btn-take-another');
-
-function showScreen(screenNum) {
-  Object.values(screens).forEach(s => s.classList.remove('active'));
-  screens[screenNum].classList.add('active');
-}
-
-// --- 1. Webcam Setup ---
-async function initCamera() {
-  try {
-    const stream = await navigator.mediaDevices.getUserMedia({
-      video: { width: 1280, height: 720, facingMode: 'user' },
-      audio: false
-    });
-    webcamFeed.srcObject = stream;
-  } catch (err) {
-    alert('Camera access is required for Whimsy Photobooth.');
-    console.error('Camera initialization error:', err);
-  }
-}
-
-btnTakePhoto.addEventListener('click', () => {
-  let count = 3;
-  countdownEl.textContent = count;
-  countdownEl.style.display = 'flex';
-  btnTakePhoto.disabled = true;
-
-  const timer = setInterval(() => {
-    count--;
-    if (count > 0) {
-      countdownEl.textContent = count;
-    } else {
-      clearInterval(timer);
-      countdownEl.style.display = 'none';
-      btnTakePhoto.disabled = false;
-      captureSnapshot();
-    }
-  }, 800);
-});
-
-function captureSnapshot() {
-  const tempCanvas = document.createElement('canvas');
-  tempCanvas.width = 580;
-  tempCanvas.height = 380;
-  const ctx = tempCanvas.getContext('2d');
-
-  ctx.translate(580, 0);
-  ctx.scale(-1, 1);
-  ctx.drawImage(webcamFeed, 0, 0, 580, 380);
-
-  currentPhotoData = tempCanvas.toDataURL('image/png');
-  activeStickers = [];
-  selectedStickerIndex = null;
-  renderDecoCanvas();
-  showScreen(2);
-}
-
-// --- 2. Enhanced Interactive Canvas Editor with Scaling & Controls ---
-function renderDecoCanvas() {
-  if (!currentPhotoData) return;
-
-  const img = new Image();
-  img.onload = () => {
-    decoCtx.clearRect(0, 0, decoCanvas.width, decoCanvas.height);
-    decoCtx.drawImage(img, 0, 0, decoCanvas.width, decoCanvas.height);
-
-    // Draw all active stickers
-    activeStickers.forEach((sticker, index) => {
-      decoCtx.save();
-      decoCtx.translate(sticker.x, sticker.y);
-      decoCtx.rotate((sticker.rotation || 0) * Math.PI / 180);
-
-      // Draw sticker icon/text
-      decoCtx.font = `${sticker.size}px sans-serif`;
-      decoCtx.textAlign = 'center';
-      decoCtx.textBaseline = 'middle';
-      decoCtx.fillText(sticker.symbol, 0, 0);
-
-      // Draw selection box & controls if selected
-      if (index === selectedStickerIndex) {
-        const boxSize = sticker.size + 12;
-        
-        // Dashed Selection Box
-        decoCtx.strokeStyle = '#ff60a8';
-        decoCtx.lineWidth = 2;
-        decoCtx.setLineDash([4, 4]);
-        decoCtx.strokeRect(-boxSize / 2, -boxSize / 2, boxSize, boxSize);
-        decoCtx.setLineDash([]); // Reset line dash
-
-        // Control Buttons (+ / - / ↻ / ✕)
-        const btnRadius = 10;
-        
-        // Top-Right: Delete (✕)
-        drawControlButton(boxSize / 2, -boxSize / 2, '✕', '#ff4d4d');
-        // Bottom-Right: Grow (+)
-        drawControlButton(boxSize / 2, boxSize / 2, '+', '#4caf50');
-        // Bottom-Left: Shrink (-)
-        drawControlButton(-boxSize / 2, boxSize / 2, '−', '#2196f3');
-        // Top-Left: Rotate (↻)
-        drawControlButton(-boxSize / 2, -boxSize / 2, '↻', '#ff9800');
-      }
-
-      decoCtx.restore();
-    });
-  };
-  img.src = currentPhotoData;
-}
-
-// Helper to draw control action buttons on sticker corners
-function drawControlButton(x, y, symbol, color) {
-  decoCtx.beginPath();
-  decoCtx.arc(x, y, 10, 0, 2 * Math.PI);
-  decoCtx.fillStyle = color;
-  decoCtx.fill();
-  decoCtx.strokeStyle = '#ffffff';
-  decoCtx.lineWidth = 1.5;
-  decoCtx.stroke();
-
-  decoCtx.fillStyle = '#ffffff';
-  decoCtx.font = '10px sans-serif';
-  decoCtx.textAlign = 'center';
-  decoCtx.textBaseline = 'middle';
-  decoCtx.fillText(symbol, x, y);
-}
-
-// Add Sticker from Palette
-document.querySelectorAll('.sticker-item').forEach(item => {
-  item.addEventListener('click', () => {
-    const symbol = item.getAttribute('data-sticker');
-    const newSticker = {
-      symbol: symbol,
-      x: 290 + (Math.random() * 40 - 20),
-      y: 190 + (Math.random() * 40 - 20),
-      size: 52,
-      rotation: 0
+  <script>
+    // --- Embedded Vector Assets for Canvas ---
+    const stickerDataURIs = {
+      'purple-gem': "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='30,10 70,10 90,35 50,90 10,35' fill='%23d8b4fe' stroke='%23a855f7' stroke-width='4'/><polygon points='30,10 50,35 70,10' fill='%23e9d5ff'/><polygon points='10,35 50,35 30,10' fill='%23c084fc'/><polygon points='70,10 50,35 90,35' fill='%23a855f7'/><polygon points='10,35 50,35 50,90' fill='%239333ea'/><polygon points='90,35 50,35 50,90' fill='%237e22ce'/></svg>",
+      'yellow-gem': "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='30,10 70,10 90,35 50,90 10,35' fill='%23fef08a' stroke='%23eab308' stroke-width='4'/><polygon points='30,10 50,35 70,10' fill='%23fef9c3'/><polygon points='10,35 50,35 30,10' fill='%23fde047'/><polygon points='70,10 50,35 90,35' fill='%23eab308'/><polygon points='10,35 50,35 50,90' fill='%23ca8a04'/><polygon points='90,35 50,35 50,90' fill='%23a16207'/></svg>",
+      'heart-gem': "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M50,88 C50,88 12,60 12,32 C12,16 24,8 36,8 C44,8 48,14 50,18 C52,14 56,8 64,8 C76,8 88,16 88,32 C88,60 50,88 50,88 Z' fill='%23f43f5e' stroke='%23be123c' stroke-width='4'/><path d='M50,18 C44,8 36,8 24,12 C16,20 16,32 30,50 L50,88 Z' fill='%23fb7185'/><circle cx='32' cy='22' r='6' fill='%23ffffff' opacity='0.7'/></svg>",
+      'green-gem': "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='30,10 70,10 90,35 50,90 10,35' fill='%2386efac' stroke='%2322c55e' stroke-width='4'/><polygon points='30,10 50,35 70,10' fill='%23bbf7d0'/><polygon points='10,35 50,35 30,10' fill='%234ade80'/><polygon points='70,10 50,35 90,35' fill='%2322c55e'/><polygon points='10,35 50,35 50,90' fill='%2316a34a'/><polygon points='90,35 50,35 50,90' fill='%2315803d'/></svg>",
+      'blue-gem': "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='30,10 70,10 90,35 50,90 10,35' fill='%237dd3fc' stroke='%230284c7' stroke-width='4'/><polygon points='30,10 50,35 70,10' fill='%23bae6fd'/><polygon points='10,35 50,35 30,10' fill='%2338bdf8'/><polygon points='70,10 50,35 90,35' fill='%230284c7'/><polygon points='10,35 50,35 50,90' fill='%230369a1'/><polygon points='90,35 50,35 50,90' fill='%23075985'/></svg>",
+      'pink-gem': "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='30,10 70,10 90,35 50,90 10,35' fill='%23f472b6' stroke='%23db2777' stroke-width='4'/><polygon points='30,10 50,35 70,10' fill='%23fbcfe8'/><polygon points='10,35 50,35 30,10' fill='%23f472b6'/><polygon points='70,10 50,35 90,35' fill='%23db2777'/><polygon points='10,35 50,35 50,90' fill='%23be185d'/><polygon points='90,35 50,35 50,90' fill='%239d174d'/></svg>"
     };
-    activeStickers.push(newSticker);
-    selectedStickerIndex = activeStickers.length - 1; // Auto-select new sticker
-    renderDecoCanvas();
-  });
-});
 
-// Coordinate Converter
-function getCanvasCoordinates(e) {
-  const rect = decoCanvas.getBoundingClientRect();
-  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-  return {
-    x: clientX - rect.left,
-    y: clientY - rect.top
-  };
-}
+    const preloadedImages = {};
+    Object.keys(stickerDataURIs).forEach(key => {
+      const img = new Image();
+      img.src = stickerDataURIs[key];
+      preloadedImages[key] = img;
+    });
 
-// Pointer Events for Dragging & Controls Clicking
-function onPointerDown(e) {
-  const { x, y } = getCanvasCoordinates(e);
+    // --- Application State ---
+    const capturedPhotos = [];
+    let currentPhotoData = null;
+    let activeStickers = [];
+    let selectedStickerIndex = null;
+    let draggedStickerIndex = null;
+    let dragOffsetX = 0;
+    let dragOffsetY = 0;
 
-  // Check if clicking control buttons on the currently selected sticker first
-  if (selectedStickerIndex !== null) {
-    const s = activeStickers[selectedStickerIndex];
-    const boxSize = s.size + 12;
+    // --- DOM Elements ---
+    const screens = {
+      1: document.getElementById('screen-1'),
+      2: document.getElementById('screen-2'),
+      3: document.getElementById('screen-3')
+    };
 
-    // Transform click relative to sticker position and rotation
-    const dx = x - s.x;
-    const dy = y - s.y;
-    const rad = -(s.rotation || 0) * Math.PI / 180;
-    const rx = dx * Math.cos(rad) - dy * Math.sin(rad);
-    const ry = dx * Math.sin(rad) + dy * Math.cos(rad);
+    const webcamFeed = document.getElementById('webcam-feed');
+    const countdownEl = document.getElementById('countdown');
+    const btnTakePhoto = document.getElementById('btn-take-photo');
 
-    // Delete (Top-Right)
-    if (Math.hypot(rx - boxSize/2, ry + boxSize/2) < 14) {
-      activeStickers.splice(selectedStickerIndex, 1);
+    const decoCanvas = document.getElementById('deco-canvas');
+    const decoCtx = decoCanvas.getContext('2d');
+    const btnAddToStrip = document.getElementById('btn-add-to-strip');
+    const btnClearCanvas = document.getElementById('btn-clear-canvas');
+
+    const btnDownloadStrip = document.getElementById('btn-download-strip');
+    const btnTakeAnother = document.getElementById('btn-take-another');
+
+    function showScreen(screenNum) {
+      Object.values(screens).forEach(s => s.classList.remove('active'));
+      screens[screenNum].classList.add('active');
+    }
+
+    // --- 1. Webcam Setup ---
+    async function initCamera() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { width: 1280, height: 720, facingMode: 'user' },
+          audio: false
+        });
+        webcamFeed.srcObject = stream;
+      } catch (err) {
+        alert('Camera access is required for Whimsy Photobooth.');
+        console.error('Camera initialization error:', err);
+      }
+    }
+
+    btnTakePhoto.addEventListener('click', () => {
+      let count = 3;
+      countdownEl.textContent = count;
+      countdownEl.style.display = 'flex';
+      btnTakePhoto.disabled = true;
+
+      const timer = setInterval(() => {
+        count--;
+        if (count > 0) {
+          countdownEl.textContent = count;
+        } else {
+          clearInterval(timer);
+          countdownEl.style.display = 'none';
+          btnTakePhoto.disabled = false;
+          captureSnapshot();
+        }
+      }, 800);
+    });
+
+    function captureSnapshot() {
+      const tempCanvas = document.createElement('canvas');
+      tempCanvas.width = 580;
+      tempCanvas.height = 380;
+      const ctx = tempCanvas.getContext('2d');
+
+      ctx.translate(580, 0);
+      ctx.scale(-1, 1);
+      ctx.drawImage(webcamFeed, 0, 0, 580, 380);
+
+      currentPhotoData = tempCanvas.toDataURL('image/png');
+      activeStickers = [];
       selectedStickerIndex = null;
       renderDecoCanvas();
-      return;
+      showScreen(2);
     }
-    // Grow (Bottom-Right)
-    if (Math.hypot(rx - boxSize/2, ry - boxSize/2) < 14) {
-      s.size = Math.min(s.size + 8, 140); // Max size limit
-      renderDecoCanvas();
-      return;
+
+    // --- 2. Interactive Canvas Editor with Scaling & Controls ---
+    function renderDecoCanvas() {
+      if (!currentPhotoData) return;
+
+      const img = new Image();
+      img.onload = () => {
+        decoCtx.clearRect(0, 0, decoCanvas.width, decoCanvas.height);
+        decoCtx.drawImage(img, 0, 0, decoCanvas.width, decoCanvas.height);
+
+        activeStickers.forEach((sticker, index) => {
+          decoCtx.save();
+          decoCtx.translate(sticker.x, sticker.y);
+          decoCtx.rotate((sticker.rotation || 0) * Math.PI / 180);
+
+          // Draw Image Asset
+          const imgAsset = preloadedImages[sticker.id];
+          if (imgAsset) {
+            decoCtx.drawImage(imgAsset, -sticker.size / 2, -sticker.size / 2, sticker.size, sticker.size);
+          }
+
+          // Draw Selection & Interactive Controls
+          if (index === selectedStickerIndex) {
+            const boxSize = sticker.size + 12;
+            
+            // Dashed Selection Box
+            decoCtx.strokeStyle = '#ff60a8';
+            decoCtx.lineWidth = 2;
+            decoCtx.setLineDash([4, 4]);
+            decoCtx.strokeRect(-boxSize / 2, -boxSize / 2, boxSize, boxSize);
+            decoCtx.setLineDash([]);
+
+            // Corner Controls (+ / - / ↻ / ✕)
+            drawControlButton(boxSize / 2, -boxSize / 2, '✕', '#ff4d4d'); // Top-Right: Delete
+            drawControlButton(boxSize / 2, boxSize / 2, '+', '#4caf50');  // Bottom-Right: Grow
+            drawControlButton(-boxSize / 2, boxSize / 2, '−', '#2196f3'); // Bottom-Left: Shrink
+            drawControlButton(-boxSize / 2, -boxSize / 2, '↻', '#ff9800'); // Top-Left: Rotate
+          }
+
+          decoCtx.restore();
+        });
+      };
+      img.src = currentPhotoData;
     }
-    // Shrink (Bottom-Left)
-    if (Math.hypot(rx + boxSize/2, ry - boxSize/2) < 14) {
-      s.size = Math.max(s.size - 8, 20); // Min size limit
-      renderDecoCanvas();
-      return;
+
+    function drawControlButton(x, y, symbol, color) {
+      decoCtx.beginPath();
+      decoCtx.arc(x, y, 10, 0, 2 * Math.PI);
+      decoCtx.fillStyle = color;
+      decoCtx.fill();
+      decoCtx.strokeStyle = '#ffffff';
+      decoCtx.lineWidth = 1.5;
+      decoCtx.stroke();
+
+      decoCtx.fillStyle = '#ffffff';
+      decoCtx.font = '10px sans-serif';
+      decoCtx.textAlign = 'center';
+      decoCtx.textBaseline = 'middle';
+      decoCtx.fillText(symbol, x, y);
     }
-    // Rotate (Top-Left)
-    if (Math.hypot(rx + boxSize/2, ry + boxSize/2) < 14) {
-      s.rotation = ((s.rotation || 0) + 15) % 360;
-      renderDecoCanvas();
-      return;
+
+    // Add Sticker from Palette
+    document.querySelectorAll('.sticker-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const stickerId = item.getAttribute('data-sticker');
+        const newSticker = {
+          id: stickerId,
+          x: 290 + (Math.random() * 40 - 20),
+          y: 190 + (Math.random() * 40 - 20),
+          size: 52,
+          rotation: 0
+        };
+        activeStickers.push(newSticker);
+        selectedStickerIndex = activeStickers.length - 1;
+        renderDecoCanvas();
+      });
+    });
+
+    function getCanvasCoordinates(e) {
+      const rect = decoCanvas.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      return {
+        x: clientX - rect.left,
+        y: clientY - rect.top
+      };
     }
-  }
 
-  // Hit test for selecting/dragging stickers
-  let hitFound = false;
-  for (let i = activeStickers.length - 1; i >= 0; i--) {
-    const s = activeStickers[i];
-    if (Math.hypot(s.x - x, s.y - y) < s.size / 1.4) {
-      selectedStickerIndex = i;
-      draggedStickerIndex = i;
-      dragOffsetX = x - s.x;
-      dragOffsetY = y - s.y;
-      hitFound = true;
-      break;
-    }
-  }
+    function onPointerDown(e) {
+      const { x, y } = getCanvasCoordinates(e);
 
-  if (!hitFound) {
-    selectedStickerIndex = null; // Deselect if clicked empty space
-  }
+      // Check Controls on Selected Sticker
+      if (selectedStickerIndex !== null) {
+        const s = activeStickers[selectedStickerIndex];
+        const boxSize = s.size + 12;
 
-  renderDecoCanvas();
-}
+        const dx = x - s.x;
+        const dy = y - s.y;
+        const rad = -(s.rotation || 0) * Math.PI / 180;
+        const rx = dx * Math.cos(rad) - dy * Math.sin(rad);
+        const ry = dx * Math.sin(rad) + dy * Math.cos(rad);
 
-function onPointerMove(e) {
-  if (draggedStickerIndex === null) return;
-  const { x, y } = getCanvasCoordinates(e);
-  activeStickers[draggedStickerIndex].x = x - dragOffsetX;
-  activeStickers[draggedStickerIndex].y = y - dragOffsetY;
-  renderDecoCanvas();
-}
-
-function onPointerUp() {
-  draggedStickerIndex = null;
-}
-
-decoCanvas.addEventListener('mousedown', onPointerDown);
-decoCanvas.addEventListener('mousemove', onPointerMove);
-window.addEventListener('mouseup', onPointerUp);
-
-decoCanvas.addEventListener('touchstart', onPointerDown);
-decoCanvas.addEventListener('touchmove', onPointerMove);
-window.addEventListener('touchend', onPointerUp);
-
-// Clear All
-btnClearCanvas.addEventListener('click', () => {
-  activeStickers = [];
-  selectedStickerIndex = null;
-  renderDecoCanvas();
-});
-
-// Export Decorated Canvas to Strip
-btnAddToStrip.addEventListener('click', () => {
-  // Deselect sticker so bounding box isn't saved into the image
-  selectedStickerIndex = null;
-  renderDecoCanvas();
-
-  setTimeout(() => {
-    const decoratedImageData = decoCanvas.toDataURL('image/png');
-    capturedPhotos.push(decoratedImageData);
-
-    const currentSlotIndex = capturedPhotos.length - 1;
-    const slotEl = document.getElementById(`slot-${currentSlotIndex}`);
-    slotEl.innerHTML = `<img src="${decoratedImageData}" alt="Strip Photo ${currentSlotIndex + 1}" />`;
-
-    if (capturedPhotos.length < 3) {
-      showScreen(1);
-    } else {
-      showScreen(3);
-    }
-  }, 50);
-});
-
-// --- 3. Photostrip Generation & Download ---
-btnDownloadStrip.addEventListener('click', () => {
-  const exportCanvas = document.getElementById('export-canvas');
-  const ctx = exportCanvas.getContext('2d');
-
-  const stripWidth = 440;
-  const stripHeight = 860;
-  exportCanvas.width = stripWidth;
-  exportCanvas.height = stripHeight;
-
-  ctx.fillStyle = '#e3f6ed';
-  ctx.fillRect(0, 0, stripWidth, stripHeight);
-
-  const padding = 32;
-  const photoWidth = stripWidth - (padding * 2);
-  const photoHeight = 220;
-  let loadedImages = 0;
-
-  capturedPhotos.forEach((dataUrl, index) => {
-    const img = new Image();
-    img.onload = () => {
-      const posY = padding + index * (photoHeight + 16);
-      ctx.drawImage(img, padding, posY, photoWidth, photoHeight);
-      loadedImages++;
-
-      if (loadedImages === capturedPhotos.length) {
-        ctx.fillStyle = '#222222';
-        ctx.font = '64px "Reenie Beanie", cursive';
-        ctx.textAlign = 'center';
-        ctx.fillText('WHIMSY', stripWidth / 2, stripHeight - 40);
-
-        const link = document.createElement('a');
-        link.download = 'whimsy-photostrip.png';
-        link.href = exportCanvas.toDataURL('image/png');
-        link.click();
+        // Delete (Top-Right)
+        if (Math.hypot(rx - boxSize/2, ry + boxSize/2) < 14) {
+          activeStickers.splice(selectedStickerIndex, 1);
+          selectedStickerIndex = null;
+          renderDecoCanvas();
+          return;
+        }
+        // Grow (Bottom-Right)
+        if (Math.hypot(rx - boxSize/2, ry - boxSize/2) < 14) {
+          s.size = Math.min(s.size + 8, 140);
+          renderDecoCanvas();
+          return;
+        }
+        // Shrink (Bottom-Left)
+        if (Math.hypot(rx + boxSize/2, ry - boxSize/2) < 14) {
+          s.size = Math.max(s.size - 8, 20);
+          renderDecoCanvas();
+          return;
+        }
+        // Rotate (Top-Left)
+        if (Math.hypot(rx + boxSize/2, ry + boxSize/2) < 14) {
+          s.rotation = ((s.rotation || 0) + 15) % 360;
+          renderDecoCanvas();
+          return;
+        }
       }
-    };
-    img.src = dataUrl;
-  });
-});
 
-btnTakeAnother.addEventListener('click', () => {
-  capturedPhotos.length = 0;
-  for (let i = 0; i < 3; i++) {
-    document.getElementById(`slot-${i}`).innerHTML = '';
-  }
-  showScreen(1);
-});
+      // Check Click/Drag Hit
+      let hitFound = false;
+      for (let i = activeStickers.length - 1; i >= 0; i--) {
+        const s = activeStickers[i];
+        if (Math.hypot(s.x - x, s.y - y) < s.size / 1.4) {
+          selectedStickerIndex = i;
+          draggedStickerIndex = i;
+          dragOffsetX = x - s.x;
+          dragOffsetY = y - s.y;
+          hitFound = true;
+          break;
+        }
+      }
 
-window.addEventListener('DOMContentLoaded', initCamera);  </script>
+      if (!hitFound) {
+        selectedStickerIndex = null;
+      }
+
+      renderDecoCanvas();
+    }
+
+    function onPointerMove(e) {
+      if (draggedStickerIndex === null) return;
+      const { x, y } = getCanvasCoordinates(e);
+      activeStickers[draggedStickerIndex].x = x - dragOffsetX;
+      activeStickers[draggedStickerIndex].y = y - dragOffsetY;
+      renderDecoCanvas();
+    }
+
+    function onPointerUp() {
+      draggedStickerIndex = null;
+    }
+
+    decoCanvas.addEventListener('mousedown', onPointerDown);
+    decoCanvas.addEventListener('mousemove', onPointerMove);
+    window.addEventListener('mouseup', onPointerUp);
+
+    decoCanvas.addEventListener('touchstart', onPointerDown);
+    decoCanvas.addEventListener('touchmove', onPointerMove);
+    window.addEventListener('touchend', onPointerUp);
+
+    btnClearCanvas.addEventListener('click', () => {
+      activeStickers = [];
+      selectedStickerIndex = null;
+      renderDecoCanvas();
+    });
+
+    btnAddToStrip.addEventListener('click', () => {
+      selectedStickerIndex = null;
+      renderDecoCanvas();
+
+      setTimeout(() => {
+        const decoratedImageData = decoCanvas.toDataURL('image/png');
+        capturedPhotos.push(decoratedImageData);
+
+        const currentSlotIndex = capturedPhotos.length - 1;
+        const slotEl = document.getElementById(`slot-${currentSlotIndex}`);
+        slotEl.innerHTML = `<img src="${decoratedImageData}" alt="Strip Photo ${currentSlotIndex + 1}" />`;
+
+        if (capturedPhotos.length < 3) {
+          showScreen(1);
+        } else {
+          showScreen(3);
+        }
+      }, 50);
+    });
+
+    // --- 3. Photostrip Generation & Download ---
+    btnDownloadStrip.addEventListener('click', () => {
+      const exportCanvas = document.getElementById('export-canvas');
+      const ctx = exportCanvas.getContext('2d');
+
+      const stripWidth = 440;
+      const stripHeight = 860;
+      exportCanvas.width = stripWidth;
+      exportCanvas.height = stripHeight;
+
+      ctx.fillStyle = '#e3f6ed';
+      ctx.fillRect(0, 0, stripWidth, stripHeight);
+
+      const padding = 32;
+      const photoWidth = stripWidth - (padding * 2);
+      const photoHeight = 220;
+      let loadedImages = 0;
+
+      capturedPhotos.forEach((dataUrl, index) => {
+        const img = new Image();
+        img.onload = () => {
+          const posY = padding + index * (photoHeight + 16);
+          ctx.drawImage(img, padding, posY, photoWidth, photoHeight);
+          loadedImages++;
+
+          if (loadedImages === capturedPhotos.length) {
+            ctx.fillStyle = '#222222';
+            ctx.font = '64px "Reenie Beanie", cursive';
+            ctx.textAlign = 'center';
+            ctx.fillText('WHIMSY', stripWidth / 2, stripHeight - 40);
+
+            const link = document.createElement('a');
+            link.download = 'whimsy-photostrip.png';
+            link.href = exportCanvas.toDataURL('image/png');
+            link.click();
+          }
+        };
+        img.src = dataUrl;
+      });
+    });
+
+    btnTakeAnother.addEventListener('click', () => {
+      capturedPhotos.length = 0;
+      for (let i = 0; i < 3; i++) {
+        document.getElementById(`slot-${i}`).innerHTML = '';
+      }
+      showScreen(1);
+    });
+
+    window.addEventListener('DOMContentLoaded', initCamera);
+  </script>
 </body>
 </html>
